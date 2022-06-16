@@ -5,6 +5,7 @@ const fs = require('fs');
 const UglifyJS = require('uglify-js');
 
 // modify unmodifable items that cannot be hooked in rammerhead.js
+// I hate Heroku
 fs.writeFileSync(
     path.join(__dirname, './client/hammerhead.js'),
     // part of fix for iframing issue
