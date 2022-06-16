@@ -5,9 +5,9 @@ const os = require('os');
 module.exports = {
     //// HOSTING CONFIGURATION ////
 
-    bindingAddress: '127.0.0.1',
-    port: 8080,
-    crossDomainPort: 8081,
+    bindingAddress: '0.0.0.0',
+    port: parseInt(process.env.PORT),
+    crossDomainPort: parseInt(process.env.PORT) + 1,
     publicDir: path.join(__dirname, '../public'), // set to null to disable
 
     // if workers is null or 1, multithreading is disabled
@@ -20,14 +20,14 @@ module.exports = {
     // this function's return object will determine how the client url rewriting will work.
     // set them differently from bindingAddress and port if rammerhead is being served
     // from a reverse proxy.
-    getServerInfo: () => ({ hostname: 'localhost', port: 8080, crossDomainPort: 8081, protocol: 'http:' }),
+    getServerInfo: () => ({ hostname: 'olive-rammerhead.herokuapp.com', port: parseInt(process.env.PORT), parseInt(process.env.PORT) + 1, protocol: 'https:' }),
     // example of non-hard-coding the hostname header
     // getServerInfo: (req) => {
     //     return { hostname: new URL('http://' + req.headers.host).hostname, port: 443, crossDomainPort: 8443, protocol: 'https: };
     // },
 
     // enforce a password for creating new sessions. set to null to disable
-    password: 'sharkie4life',
+    password: null,
 
     // disable or enable localStorage sync (turn off if clients send over huge localStorage data, resulting in huge memory usages)
     disableLocalStorageSync: false,
